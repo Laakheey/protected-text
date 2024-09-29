@@ -1,7 +1,25 @@
+import { useState } from "react";
+import NavBar from "./components/NavBar";
+import TextEditor from "./components/TextEditor";
+import HomePage from "./components/HomePage";
+import { Route, Routes } from "react-router-dom";
+
 function App() {
+  const [isTextChanged, _] = useState(true);
+
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/:id"
+          element={
+            <NavBar isTextChanged={isTextChanged}>
+              <TextEditor />
+            </NavBar>
+          }
+        />
+      </Routes>
     </>
   );
 }
